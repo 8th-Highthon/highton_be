@@ -1,4 +1,4 @@
-package com.example.highton.global.base.entity;
+package com.example.highton.global.entity.base;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

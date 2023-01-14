@@ -3,7 +3,7 @@ package com.example.highton.domain.item;
 import com.example.highton.domain.account.Account;
 import com.example.highton.domain.item.enums.Category;
 import com.example.highton.domain.item.enums.SellType;
-import com.example.highton.global.base.entity.BaseTimeEntity;
+import com.example.highton.global.entity.base.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

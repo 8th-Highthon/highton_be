@@ -2,7 +2,7 @@ package com.example.highton.domain.account;
 
 import com.example.highton.domain.bank.BankAccount;
 import com.example.highton.domain.bank.PiggyBank;
-import com.example.highton.global.base.entity.BaseTimeEntity;
+import com.example.highton.global.entity.base.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
