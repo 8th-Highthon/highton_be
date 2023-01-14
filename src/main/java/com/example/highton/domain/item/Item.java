@@ -4,7 +4,6 @@ import com.example.highton.domain.account.Account;
 import com.example.highton.domain.item.enums.Category;
 import com.example.highton.domain.item.enums.SellType;
 import com.example.highton.global.entity.base.BaseTimeEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,13 +18,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 public class Item extends BaseTimeEntity {
     @Id

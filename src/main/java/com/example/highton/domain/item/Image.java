@@ -1,6 +1,5 @@
 package com.example.highton.domain.item;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +13,6 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 public class Image {
     @Id

@@ -4,7 +4,6 @@ import com.example.highton.domain.bank.BankAccount;
 import com.example.highton.domain.bank.PiggyBank;
 import com.example.highton.domain.item.Item;
 import com.example.highton.global.entity.base.BaseTimeEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +20,6 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 public class Account extends BaseTimeEntity {
     @Id

@@ -2,7 +2,6 @@ package com.example.highton.domain.bank;
 
 import com.example.highton.domain.account.Account;
 import com.example.highton.domain.bank.enums.BankType;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +18,6 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 public class BankAccount {
     @Id
