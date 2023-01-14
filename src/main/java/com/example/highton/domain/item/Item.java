@@ -45,7 +45,7 @@ public class Item extends BaseTimeEntity {
     private Category category;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(length = 6)
+    @Column(length = 6, nullable = false)
     private SellType sellType;
 
     @ManyToOne(fetch = FetchType.LAZY)
