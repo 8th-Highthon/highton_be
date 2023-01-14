@@ -27,4 +27,8 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
+
+    public Image(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }

@@ -47,4 +47,11 @@ public class Account extends BaseTimeEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
     private List<Item> itemList = new ArrayList<>();
+
+    public Account(String userId, String password, String nickname, String profileImagePath) {
+        this.userId = userId;
+        this.password = password;
+        this.nickname = nickname;
+        this.profileImagePath = profileImagePath;
+    }
 }

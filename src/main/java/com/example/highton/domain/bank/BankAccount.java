@@ -39,4 +39,10 @@ public class BankAccount {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    public BankAccount(String username, BankType bank, String number) {
+        this.username = username;
+        this.bank = bank;
+        this.number = number;
+    }
 }

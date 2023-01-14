@@ -32,4 +32,10 @@ public class PiggyBank {
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
+
+    public PiggyBank(Long point, LocalDateTime startDate, LocalDateTime endDate) {
+        this.point = point;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }

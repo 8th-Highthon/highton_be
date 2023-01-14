@@ -54,4 +54,12 @@ public class Item extends BaseTimeEntity {
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Image> imageList = new ArrayList<>();
+
+    public Item(Long price, String title, String description, Category category, SellType sellType) {
+        this.price = price;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.sellType = sellType;
+    }
 }
