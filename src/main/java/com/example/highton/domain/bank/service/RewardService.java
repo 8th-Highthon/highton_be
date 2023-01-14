@@ -1,0 +1,40 @@
+package com.example.highton.domain.bank.service;
+
+import com.example.highton.domain.account.Account;
+import com.example.highton.domain.account.service.AccountService;
+import com.example.highton.domain.bank.PiggyBank;
+import com.example.highton.domain.bank.Refund;
+import com.example.highton.domain.bank.repository.PiggyBankRepository;
+import com.example.highton.domain.bank.repository.RefundRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+@Service
+@RequiredArgsConstructor
+public class RewardService {
+    private final PiggyBankRepository piggyBankRepository;
+    private final AccountService accountService;
+    private final RefundRepository refundRepository;
+
+    public void rewardMoney() {
+        List<PiggyBank> piggyBanks = piggyBankRepository.findAll();
+        List<PiggyBank> bankStream = piggyBanks.stream()
+                .filter(e -> e.getEndDate().isBefore(LocalDateTime.now())).collect(Collectors.toList());
+        if(!bankStream.isEmpty()) {
+            bankStream.forEach(piggyBank -> {
+                Long point = piggyBank.getPoint();
+                Refund refund = new Refund((long) ((point * 0.15) + point), piggyBank.getAccount());
+                refundRepository.save(refund);
+                piggyBank.resetPiggyBank();
+                piggyBankRepository.save(piggyBank);
+            });
+        }
+
+    }
+}

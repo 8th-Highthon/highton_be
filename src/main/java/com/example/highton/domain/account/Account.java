@@ -2,6 +2,7 @@ package com.example.highton.domain.account;
 
 import com.example.highton.domain.bank.BankAccount;
 import com.example.highton.domain.bank.PiggyBank;
+import com.example.highton.domain.bank.Refund;
 import com.example.highton.domain.item.Item;
 import com.example.highton.global.entity.base.BaseTimeEntity;
 import lombok.Getter;
@@ -45,6 +46,9 @@ public class Account extends BaseTimeEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
     private List<Item> itemList = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+    private List<Refund> refundList = new ArrayList<>();
 
     public Account(String userId, String password, String nickname, String profileImagePath) {
         this.userId = userId;
