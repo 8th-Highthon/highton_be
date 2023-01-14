@@ -18,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 public class PiggyBank {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,7 +34,7 @@ public class PiggyBank {
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
-
+    
     public static final Integer DEFAULT_PERCENTAGE = 10;
 
     public PiggyBank(Long point, LocalDateTime startDate) {
@@ -46,6 +47,12 @@ public class PiggyBank {
 
     public void updatePercentage(Integer percentage) {
         this.percentage = percentage;
+    }
+
+    public void resetPiggyBank() {
+        this.point = null;
+        this.startDate = null;
+        this.endDate = null;
     }
 
     public void plusPoint(Long point) {

@@ -7,5 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface PiggyBankRepository extends CrudRepository<PiggyBank, Long> {
+    Boolean existsByAccount(Account account);
     Optional<PiggyBank> findByAccount(Account account);
 }
