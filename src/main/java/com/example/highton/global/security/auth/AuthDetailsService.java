@@ -1,5 +1,6 @@
 package com.example.highton.global.security.auth;
 
+import com.example.highton.domain.account.exception.AccountNotFoundException;
 import com.example.highton.domain.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +16,7 @@ public class AuthDetailsService implements UserDetailsService {
     @Override
     public AuthDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         accountRepository.findByUserId(userId)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(AccountNotFoundException::new);
         return new AuthDetails(userId);
     }
 
