@@ -54,7 +54,7 @@ public class ItemController {
         return itemService.findItemListByCategory(category);
     }
 
-    @Operation(summary = "판매 물품 리스트 조회")
+    @Operation(summary = "판매 물품 리스트 검색")
     @GetMapping("/search")
     public FindItemListResponse findItemListByTitle(@RequestParam(required = false) String title) {
         return itemService.findItemListByTitle(title);
