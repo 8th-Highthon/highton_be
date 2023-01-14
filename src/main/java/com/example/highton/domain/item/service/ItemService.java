@@ -33,7 +33,7 @@ public class ItemService {
 
     private final AccountService accountService;
 
-    private Item getItem(Long itemId) {
+    public Item getItem(Long itemId) {
         return itemRepository.findById(itemId)
                 .orElseThrow(ItemNotFoundException::new);
     }
