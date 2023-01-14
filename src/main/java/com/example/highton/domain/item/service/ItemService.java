@@ -5,12 +5,15 @@ import com.example.highton.domain.account.exception.CannotAccessException;
 import com.example.highton.domain.account.service.AccountService;
 import com.example.highton.domain.item.Image;
 import com.example.highton.domain.item.Item;
+import com.example.highton.domain.item.enums.Category;
 import com.example.highton.domain.item.exception.CannotDeleteItemException;
 import com.example.highton.domain.item.exception.ItemNotFoundException;
 import com.example.highton.domain.item.presentation.request.CreateItemRequest;
 import com.example.highton.domain.item.presentation.request.DeleteItemRequest;
 import com.example.highton.domain.item.presentation.response.CreateItemResponse;
 import com.example.highton.domain.item.presentation.response.FindItemDetailsResponse;
+import com.example.highton.domain.item.presentation.response.FindItemListResponse;
+import com.example.highton.domain.item.presentation.response.dto.ItemDto;
 import com.example.highton.domain.item.repository.ItemRepository;
 import com.example.highton.domain.tradedetail.repository.TradeDetailRepository;
 import lombok.RequiredArgsConstructor;
@@ -93,6 +96,19 @@ public class ItemService {
         );
     }
 
+    public FindItemListResponse findItemList(Category category) {
+        List<Item> itemList = itemRepository.findAllByCategory(category);
 
+        List<ItemDto> itemDtoList = itemList.stream()
+                .map(item -> new ItemDto(
+                        item.getId(),
+                        item.getTitle(),
+                        item.getDescription(),
+                        item.getCreatedAt()
+                ))
+                .collect(Collectors.toList());
+
+        return new FindItemListResponse(itemDtoList);
+    }
 
 }
