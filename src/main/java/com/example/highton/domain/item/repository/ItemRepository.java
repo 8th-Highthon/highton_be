@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ItemRepository extends CrudRepository<Item, Long> {
     List<Item> findAllByCategory(Category category);
+    List<Item> findAllByTitleContains(String title);
 }

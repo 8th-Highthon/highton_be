@@ -50,8 +50,14 @@ public class ItemController {
 
     @Operation(summary = "판매 물품 리스트 조회")
     @GetMapping("/list")
-    public FindItemListResponse findItemList(@RequestParam(required = false) Category category) {
-        return itemService.findItemList(category);
+    public FindItemListResponse findItemListByCategory(@RequestParam(required = false) Category category) {
+        return itemService.findItemListByCategory(category);
+    }
+
+    @Operation(summary = "판매 물품 리스트 조회")
+    @GetMapping("/search")
+    public FindItemListResponse findItemListByTitle(@RequestParam(required = false) String title) {
+        return itemService.findItemListByTitle(title);
     }
 
 }

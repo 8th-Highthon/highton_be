@@ -96,9 +96,19 @@ public class ItemService {
         );
     }
 
-    public FindItemListResponse findItemList(Category category) {
+    public FindItemListResponse findItemListByCategory(Category category) {
         List<Item> itemList = itemRepository.findAllByCategory(category);
 
+        return getFindItemListResponse(itemList);
+    }
+
+    public FindItemListResponse findItemListByTitle(String title) {
+        List<Item> itemList = itemRepository.findAllByTitleContains(title);
+
+        return getFindItemListResponse(itemList);
+    }
+
+    private FindItemListResponse getFindItemListResponse(List<Item> itemList) {
         List<ItemDto> itemDtoList = itemList.stream()
                 .map(item -> new ItemDto(
                         item.getId(),
