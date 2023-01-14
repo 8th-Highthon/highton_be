@@ -29,7 +29,7 @@ public class Account extends BaseTimeEntity {
     @Column(length = 60, nullable = false)
     private String userId;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 60, nullable = false)
     private String password;
 
     @Column(length = 60, nullable = false)
