@@ -2,11 +2,15 @@ package com.example.highton.domain.account.service;
 
 import com.example.highton.domain.account.Account;
 import com.example.highton.domain.account.exception.AccountNotFoundException;
+import com.example.highton.domain.account.exception.PasswordNotMatchedException;
 import com.example.highton.domain.account.exception.UnAuthorizedException;
+import com.example.highton.domain.account.presentation.dto.request.SignInRequest;
+import com.example.highton.domain.account.presentation.dto.response.SignInResponse;
 import com.example.highton.domain.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
