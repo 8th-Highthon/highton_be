@@ -17,7 +17,6 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
 
     public SignInResponse signIn(SignInRequest signInRequest) {
-        System.out.println(passwordEncoder.encode(signInRequest.getPassword()));
         Account user = accountRepository.findByUserId(signInRequest.getUserId())
                 .orElseThrow(() -> new AccountNotFoundException());
         if(!passwordEncoder.matches(signInRequest.getPassword(), user.getPassword())) {
