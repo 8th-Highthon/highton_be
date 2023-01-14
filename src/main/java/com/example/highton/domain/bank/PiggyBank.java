@@ -3,6 +3,7 @@ package com.example.highton.domain.bank;
 import com.example.highton.domain.account.Account;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.parameters.P;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,16 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
 @Getter
 public class PiggyBank {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long point;
+
+    private Integer percentage = DEFAULT_PERCENTAGE;
 
     private LocalDateTime startDate;
 
@@ -29,12 +34,19 @@ public class PiggyBank {
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
+    
+    public static final Integer DEFAULT_PERCENTAGE = 10;
 
-    public PiggyBank(Long point, LocalDateTime startDate, LocalDateTime endDate, Account account) {
+    public PiggyBank(Long point, LocalDateTime startDate) {
         this.point = point;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.account = account;
+        if (Objects.nonNull(startDate)) {
+            this.endDate = startDate.plusMonths(6);
+        }
+    }
+
+    public void updatePercentage(Integer percentage) {
+        this.percentage = percentage;
     }
 
     public void resetPiggyBank() {
@@ -42,4 +54,9 @@ public class PiggyBank {
         this.startDate = null;
         this.endDate = null;
     }
+
+    public void plusPoint(Long point) {
+        this.point += point;
+    }
+
 }

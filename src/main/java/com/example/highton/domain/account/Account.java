@@ -55,5 +55,6 @@ public class Account extends BaseTimeEntity {
         this.password = password;
         this.nickname = nickname;
         this.profileImagePath = profileImagePath;
+        this.piggyBank = new PiggyBank(null, null);
     }
 }
