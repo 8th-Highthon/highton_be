@@ -4,11 +4,13 @@ import com.example.highton.domain.account.Account;
 import com.example.highton.domain.account.exception.CannotAccessException;
 import com.example.highton.domain.account.service.AccountService;
 import com.example.highton.domain.item.Item;
+import com.example.highton.domain.item.exception.CannotDeleteItemException;
 import com.example.highton.domain.item.exception.ItemNotFoundException;
 import com.example.highton.domain.item.presentation.request.CreateItemRequest;
 import com.example.highton.domain.item.presentation.request.DeleteItemRequest;
 import com.example.highton.domain.item.presentation.response.CreateItemResponse;
 import com.example.highton.domain.item.repository.ItemRepository;
+import com.example.highton.domain.tradedetail.repository.TradeDetailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final TradeDetailRepository tradeDetailRepository;
 
     private final AccountService accountService;
 
@@ -49,7 +52,9 @@ public class ItemService {
             throw new CannotAccessException();
         }
 
-        //TODO 거래내역이 있으면 삭제 금지
+        if (tradeDetailRepository.findByItemId(item.getId()).isPresent()) {
+            throw new CannotDeleteItemException();
+        }
 
         itemRepository.delete(item);
     }
