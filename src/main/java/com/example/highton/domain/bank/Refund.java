@@ -9,37 +9,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import java.time.LocalDateTime;
+import javax.persistence.ManyToOne;
 
 @Entity
-@NoArgsConstructor
 @Getter
-public class PiggyBank {
+@NoArgsConstructor
+public class Refund {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long point;
 
-    private LocalDateTime startDate;
-
-    private LocalDateTime endDate;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-    public PiggyBank(Long point, LocalDateTime startDate, LocalDateTime endDate, Account account) {
+    public Refund(Long point, Account account) {
         this.point = point;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.account = account;
-    }
-
-    public void resetPiggyBank() {
-        this.point = null;
-        this.startDate = null;
-        this.endDate = null;
     }
 }
