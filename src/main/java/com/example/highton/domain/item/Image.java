@@ -26,7 +26,8 @@ public class Image {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    public Image(String imagePath) {
+    public Image(String imagePath, Item item) {
         this.imagePath = imagePath;
+        this.item = item;
     }
 }
