@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +29,7 @@ public class PiggyBank {
 
     private LocalDateTime endDate;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
 }

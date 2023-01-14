@@ -41,6 +41,6 @@ public class Account extends BaseTimeEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "account")
     private BankAccount bankAccount;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
-    private List<PiggyBank> piggyBank = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "account")
+    private PiggyBank piggyBank;
 }
