@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class AccountService {
 
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Account getAccount() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -24,5 +25,14 @@ public class AccountService {
         return accountRepository.findByUserId(authentication.getName())
                 .orElseThrow(AccountNotFoundException::new);
     }
-
+    
+    public SignInResponse signIn(SignInRequest signInRequest) {
+        Account user = accountRepository.findByUserId(signInRequest.getUserId())
+                .orElseThrow(() -> new AccountNotFoundException());
+        if(!passwordEncoder.matches(signInRequest.getPassword(), user.getPassword())) {
+            throw new PasswordNotMatchedException();
+        }
+        return new SignInResponse(user.getUserId());
+    }
+    
 }

@@ -32,6 +32,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/**").permitAll()
+                .antMatchers("/account/**").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated();
                 //.and().apply(new FilterConfig(objectMapper, jwtTokenProvider));
